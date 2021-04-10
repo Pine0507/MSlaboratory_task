@@ -1,3 +1,3 @@
 # MSlaboratory_task
 
-#MS研の課題です
+MS研の課題

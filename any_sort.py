@@ -1,34 +1,57 @@
 import double_list
+import copy
+# comp_func = lambda x,y: if
 
 
-def list_insert_sort(values_list, num):
+def list_insert_sort(values_list, num, comp_func):
     """
-    >>> list = [5,2,4,6,1,3]
-    >>> list_insert_sort(list,6)
+    >>> list = [5, 2, 4, 6, 1, 3]
+    >>> list_tmp = copy.copy(list)
+    >>> list_insert_sort(list_tmp, 6, lambda x, y: x > y)
     insert_sort
     [2, 5, 4, 6, 1, 3]
     [2, 4, 5, 6, 1, 3]
     [2, 4, 5, 6, 1, 3]
     [1, 2, 4, 5, 6, 3]
     [1, 2, 3, 4, 5, 6]
+    >>> list_tmp = copy.copy(list)
+    >>> list_insert_sort(list_tmp, 6, lambda x, y: x < y)
+    insert_sort
+    [5, 2, 4, 6, 1, 3]
+    [5, 4, 2, 6, 1, 3]
+    [6, 5, 4, 2, 1, 3]
+    [6, 5, 4, 2, 1, 3]
+    [6, 5, 4, 3, 2, 1]
     """
+
     print("insert_sort")
     for i in range(1, num):
         tmp = values_list[i]
         j = i-1
-        while j >= 0 and values_list[j] > tmp:
+        while j >= 0 and comp_func(values_list[j], tmp):
             values_list[j+1] = values_list[j]
             j = j-1
         values_list[j+1] = tmp
         print(values_list)
 
+    """
+        #　昇順
+        if key == 1 and values_list[0] < values_list[num]:
+            new_list = []
+            for i in range(num):
+
+                new_list.append(lambda i: (i % 2 == 0, i))
+            print(new_list)
+    """
+
     return
 
 
-def list_bubble_sort(values_list, num):
+def list_bubble_sort(values_list, num, comp_func):
     """
-    >>> list = [5,2,4,6,1,3]
-    >>> list_bubble_sort(list,6)
+    >>> list = [5, 2, 4, 6, 1, 3]
+    >>> list_tmp = copy.copy(list)
+    >>> list_bubble_sort(list_tmp, 6, lambda x, y: x < y)
     bubble_sort
     [5, 2, 4, 1, 6, 3]
     [5, 2, 1, 4, 6, 3]
@@ -40,14 +63,24 @@ def list_bubble_sort(values_list, num):
     [1, 2, 3, 5, 4, 6]
     [1, 2, 3, 4, 5, 6]
     9
+    >>> list_tmp = copy.copy(list)
+    >>> list_bubble_sort(list_tmp, 6, lambda x, y: x > y)
+    [5, 2, 4, 6, 3, 1]
+    [5, 2, 6, 4, 3, 1]
+    [5, 6, 2, 4, 3, 1]
+    [6, 5, 2, 4, 3, 1]
+    [6, 5, 4, 2, 3, 1]
+    [6, 5, 4, 3, 2, 1]
+    6
     """
+
     print("bubble_sort")
     flag = 1
     exchange_count = 0
     while flag == 1:
         flag = 0
         for j in range(num-1, 0, -1):
-            if values_list[j] < values_list[j-1]:
+            if comp_func(values_list[j], values_list[j-1]):
                 tmp = values_list[j]
                 values_list[j] = values_list[j-1]
                 values_list[j-1] = tmp
@@ -59,12 +92,17 @@ def list_bubble_sort(values_list, num):
     return
 
 
-def list_selection_sort(values_list, num):
+def list_selection_sort(values_list, num, comp_func):
     """
-    >>> list = [5,2,4,6,1,3]
-    >>> list_selection_sort(list,6)
+    >>> list = [5, 2, 4, 6, 1, 3]
+    >>> list_tmp = copy.copy(list)
+    >>> list_selection_sort(list_tmp, 6, lambda x, y: x < y)
     selection_sort
     3
+    >>> list_tmp = copy.copy(list)
+    >>> list_selection_sort(list_tmp, 6, lambda x, y: x > y)
+    selection_sort
+    4
     """
     print("selection_sort")
 
@@ -73,7 +111,7 @@ def list_selection_sort(values_list, num):
     for i in range(num):
         minj = i
         for j in range(i, num, 1):
-            if values_list[j] < values_list[minj]:
+            if comp_func(values_list[j], values_list[minj]):
                 minj = j
                 exchange_flag = 1
         tmp = values_list[i]
@@ -81,16 +119,16 @@ def list_selection_sort(values_list, num):
         values_list[minj] = tmp
         if exchange_flag:
             exchange_count += 1
-            # print(values_list)
         exchange_flag = 0
+    # print(values_list)
     print(exchange_count)
     return
 
 
 def double_list_insert_sort(values_list, num):
     """
-    >>> list = [5,2,4,6,1,3]
-    >>> double_list_insert_sort(list,6)
+    >>> list = [5, 2, 4, 6, 1, 3]
+    >>> double_list_insert_sort(list, 6)
     insert_sort by double_list
     5 2 4 6 1 3
     2 5 4 6 1 3
@@ -98,8 +136,8 @@ def double_list_insert_sort(values_list, num):
     2 4 5 6 1 3
     1 2 4 5 6 3
     1 2 3 4 5 6
-    >>> list2 = [1,2,3]
-    >>> double_list_insert_sort(list2,3)
+    >>> list2 = [1, 2, 3]
+    >>> double_list_insert_sort(list2, 3)
     insert_sort by double_list
     1 2 3
     1 2 3
@@ -133,13 +171,13 @@ def double_list_insert_sort(values_list, num):
 
 def double_list_bubble_sort(values_list, num):
     """
-    >>> list = [5,2,4,6,1,3]
-    >>> double_list_bubble_sort(list,6)
+    >>> list = [5, 2, 4, 6, 1, 3]
+    >>> double_list_bubble_sort(list, 6)
     bubble_sort by double_list
     1 2 3 4 5 6
     9
-    >>> list = [5,3,2,4,1]
-    >>> double_list_bubble_sort(list,5)
+    >>> list = [5, 3, 2, 4, 1]
+    >>> double_list_bubble_sort(list, 5)
     bubble_sort by double_list
     1 2 3 4 5
     8
@@ -181,13 +219,13 @@ def double_list_selection_sort(values_list, num):
     # insertが使いたかったから最大値探索にした
     # こうなると交換回数が変わって来るがそこはご愛嬌
     """
-    >>> list = [5,2,4,6,1,3]
-    >>> double_list_selection_sort(list,6)
+    >>> list = [5, 2, 4, 6, 1, 3]
+    >>> double_list_selection_sort(list, 6)
     sellection_sort by double_list
     1 2 3 4 5 6
     3
-    >>> list = [5,6,4,2,1,3]
-    >>> double_list_selection_sort(list,6)
+    >>> list = [5, 6, 4, 2, 1, 3]
+    >>> double_list_selection_sort(list, 6)
     sellection_sort by double_list
     1 2 3 4 5 6
     2
@@ -283,8 +321,8 @@ def print_tramp_list(data_list):
 
 def tramp_sort(data_list, num):
     """
-    >>> list = ["H4","C9","S4","D2","C3"]
-    >>> tramp_sort(list,5)
+    >>> list = ["H4", "C9", "S4", "D2", "C3"]
+    >>> tramp_sort(list, 5)
     D2 C3 H4 S4 C9
     Stable
     D2 C3 H4 S4 C9
@@ -472,8 +510,8 @@ class tramp_double(double_list.Double_List):
 
 def double_list_tramp_sort(data_list, num):
     """
-    >>> list = ["H4","C9","S4","D2","C3"]
-    >>> double_list_tramp_sort(list,5)
+    >>> list = ["H4", "C9", "S4", "D2", "C3"]
+    >>> double_list_tramp_sort(list, 5)
     D2 C3 H4 S4 C9
     Stable
     D2 C3 S4 H4 C9

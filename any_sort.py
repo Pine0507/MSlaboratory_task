@@ -65,6 +65,7 @@ def list_bubble_sort(values_list, num, comp_func):
     9
     >>> list_tmp = copy.copy(list)
     >>> list_bubble_sort(list_tmp, 6, lambda x, y: x > y)
+    bubble_sort
     [5, 2, 4, 6, 3, 1]
     [5, 2, 6, 4, 3, 1]
     [5, 6, 2, 4, 3, 1]
@@ -125,10 +126,11 @@ def list_selection_sort(values_list, num, comp_func):
     return
 
 
-def double_list_insert_sort(values_list, num):
+def double_list_insert_sort(values_list, num, comp_func):
     """
     >>> list = [5, 2, 4, 6, 1, 3]
-    >>> double_list_insert_sort(list, 6)
+    >>> tmp_list = copy.copy(list)
+    >>> double_list_insert_sort(list, 6,lambda x, y: x > y)
     insert_sort by double_list
     5 2 4 6 1 3
     2 5 4 6 1 3
@@ -137,11 +139,19 @@ def double_list_insert_sort(values_list, num):
     1 2 4 5 6 3
     1 2 3 4 5 6
     >>> list2 = [1, 2, 3]
-    >>> double_list_insert_sort(list2, 3)
+    >>> double_list_insert_sort(list2, 3,lambda x, y: x > y)
     insert_sort by double_list
     1 2 3
     1 2 3
     1 2 3
+    >>> double_list_insert_sort(tmp_list, 6,lambda x, y: x < y)
+    insert_sort by double_list
+    5 2 4 6 1 3
+    5 2 4 6 1 3
+    5 4 2 6 1 3
+    6 5 4 2 1 3
+    6 5 4 2 1 3
+    6 5 4 3 2 1
     """
     print("insert_sort by double_list")
 
@@ -159,7 +169,7 @@ def double_list_insert_sort(values_list, num):
         tmp_j_node = tmp_node.prev
         tmp_value = tmp_node.value
         j = i-1
-        while j >= 0 and tmp_j_node.value > tmp_value:
+        while j >= 0 and comp_func(tmp_j_node.value, tmp_value):
             tmp_j_node.next.value = tmp_j_node.value
             tmp_j_node = tmp_j_node.prev
             j = j-1
@@ -169,15 +179,20 @@ def double_list_insert_sort(values_list, num):
     return
 
 
-def double_list_bubble_sort(values_list, num):
+def double_list_bubble_sort(values_list, num, comp_func):
     """
     >>> list = [5, 2, 4, 6, 1, 3]
-    >>> double_list_bubble_sort(list, 6)
+    >>> tmp_list = copy.copy(list)
+    >>> double_list_bubble_sort(list, 6,lambda x, y: x < y)
     bubble_sort by double_list
     1 2 3 4 5 6
     9
+    >>> double_list_bubble_sort(list, 6,lambda x, y: x > y)
+    bubble_sort by double_list
+    6 5 4 3 2 1
+    6
     >>> list = [5, 3, 2, 4, 1]
-    >>> double_list_bubble_sort(list, 5)
+    >>> double_list_bubble_sort(list, 5,lambda x, y: x < y)
     bubble_sort by double_list
     1 2 3 4 5
     8
@@ -200,7 +215,7 @@ def double_list_bubble_sort(values_list, num):
     while flag:
         flag = 0
         for j in range(num):
-            if tmp_node.value < tmp_node.prev.value and \
+            if comp_func(tmp_node.value, tmp_node.prev.value) and \
                     tmp_node != sort_list.head_node:
 
                 tmp_value = tmp_node.value
@@ -215,17 +230,21 @@ def double_list_bubble_sort(values_list, num):
     return
 
 
-def double_list_selection_sort(values_list, num):
+def double_list_selection_sort(values_list, num, comp_func):
     # insertが使いたかったから最大値探索にした
     # こうなると交換回数が変わって来るがそこはご愛嬌
     """
     >>> list = [5, 2, 4, 6, 1, 3]
-    >>> double_list_selection_sort(list, 6)
+    >>> double_list_selection_sort(list, 6,lambda x, y: x > y)
     sellection_sort by double_list
     1 2 3 4 5 6
     3
+    >>> double_list_selection_sort(list, 6,lambda x, y: x < y)
+    sellection_sort by double_list
+    6 5 4 3 2 1
+    4
     >>> list = [5, 6, 4, 2, 1, 3]
-    >>> double_list_selection_sort(list, 6)
+    >>> double_list_selection_sort(list, 6,lambda x, y: x > y)
     sellection_sort by double_list
     1 2 3 4 5 6
     2
@@ -247,7 +266,7 @@ def double_list_selection_sort(values_list, num):
         biggest_value = tmp_node.value
 
         for j in range(i, num):
-            if j_tmp_node.value > biggest_value:
+            if comp_func(j_tmp_node.value, biggest_value):
                 biggest_value = j_tmp_node.value
                 exchange_flag = 1
             j_tmp_node = j_tmp_node.next
@@ -445,12 +464,10 @@ class tramp_double(double_list.Double_List):
         return return_list
 
     def tramp_double_bubble(self, data_list, num):
-
         for i in range(num-1, -1, -1):
             self.insert(data_list[i][1], data_list[i][0])
 
         tmp_node = self.head_node.prev
-
         tmp_node = tmp_node.prev
         flag = 1
 

@@ -1,6 +1,5 @@
 import double_list
 import copy
-# comp_func = lambda x,y: if
 
 
 def list_insert_sort(values_list, num, comp_func):
@@ -236,20 +235,20 @@ def double_list_selection_sort(values_list, num, comp_func):
     """
     >>> list = [5, 2, 4, 6, 1, 3]
     >>> double_list_selection_sort(list, 6,lambda x, y: x > y)
-    sellection_sort by double_list
+    selection_sort by double_list
     1 2 3 4 5 6
     3
     >>> double_list_selection_sort(list, 6,lambda x, y: x < y)
-    sellection_sort by double_list
+    selection_sort by double_list
     6 5 4 3 2 1
     4
     >>> list = [5, 6, 4, 2, 1, 3]
     >>> double_list_selection_sort(list, 6,lambda x, y: x > y)
-    sellection_sort by double_list
+    selection_sort by double_list
     1 2 3 4 5 6
     2
     """
-    print("sellection_sort by double_list")
+    print("selection_sort by double_list")
 
     sort_list = double_list.Double_List()
 

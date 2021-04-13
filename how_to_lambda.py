@@ -1,3 +1,4 @@
+# any_sort.pyで昇順降順に関するラムダ式を作ったためこちらで 偶昇順 , 奇昇順　の並び方をラムダで実現
 import any_sort
 
 
@@ -22,16 +23,6 @@ def main():
     # これでようやくprintされる　なぜ
     list(map_even)
     list(map_odd)
-
-    # destinated_list = list(map_even) + list(map_odd)
-    # num = len(destinated_list)
-    """
-    for i in range(num):
-        if destinated_list[i] == "karioki":
-            destinated_list.remove("karioki")
-            i -= i
-    """
-    # destinated_list.remove(None for i in destinated_list)
 
     return
 

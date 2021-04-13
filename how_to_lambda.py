@@ -1,3 +1,4 @@
+# any_sort.pyで昇順降順に関するラムダ式を作ったためこちらで 偶昇順 , 奇昇順　の並び方をラムダで実現
 import any_sort
 
 
@@ -19,7 +20,7 @@ def main():
                    2 == 0 else "karioki", sort_list)
     map_odd = map(lambda x: print(x, end=" ") if x %
                   2 == 1 else "karioki", sort_list)
-    # これでようやくprintされる　なぜ
+
     list(map_even)
     list(map_odd)
 

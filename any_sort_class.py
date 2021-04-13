@@ -1,5 +1,6 @@
 import double_list
 import copy
+import sys
 
 
 class AbstractSort:
@@ -179,6 +180,25 @@ class Double_selection(AbstractSort):
         return
 
 
+def get_sort_instance(algorithm_name):
+    if algorithm_name == "insert_sort":
+        return Insert_sort()
+    elif algorithm_name == "bubble_sort":
+        return Bubble_sort()
+    elif algorithm_name == "selection_sort":
+        return Selection_sort()
+    elif algorithm_name == "double_insert":
+        return Double_insert()
+    elif algorithm_name == "double_bubble":
+        return Double_bubble()
+    elif algorithm_name == "double_selection":
+        return Double_selection()
+    else:
+        print("Error! Do not conduct any methods.")
+        print("Please cheak the spell you typed.")
+        sys.exit(1)
+
+
 def main():
     """
     >>> values = [10,5,7,8,8,20,100,1]
@@ -244,6 +264,97 @@ def main():
 
     >>> values_tmp = copy.copy(values)
     >>> _c = Double_selection()
+    >>> _c.sort(values_tmp, num ,lambda x, y: x < y)
+    selection_sort by double_list
+    [10, 5, 7, 8, 8, 20, 100, 1]
+    1 5 7 8 8 10 20 100
+    3
+
+    ここまでで課題6前半
+    以後factory_method実行例
+
+    >>> values = [10,5,7,8,8,20,100,1]
+    >>> num = len(values)
+
+
+    >>> sort_arg = "bubble_sort"
+
+    >>> values_tmp = copy.copy(values)
+    >>> _c = get_sort_instance(sort_arg)
+    >>> _c.sort(values_tmp, num ,lambda x, y: x < y)
+    bubble_sort
+    [10, 5, 7, 8, 8, 20, 1, 100]
+    [10, 5, 7, 8, 8, 1, 20, 100]
+    [10, 5, 7, 8, 1, 8, 20, 100]
+    [10, 5, 7, 1, 8, 8, 20, 100]
+    [10, 5, 1, 7, 8, 8, 20, 100]
+    [10, 1, 5, 7, 8, 8, 20, 100]
+    [1, 10, 5, 7, 8, 8, 20, 100]
+    [1, 5, 10, 7, 8, 8, 20, 100]
+    [1, 5, 7, 10, 8, 8, 20, 100]
+    [1, 5, 7, 8, 10, 8, 20, 100]
+    [1, 5, 7, 8, 8, 10, 20, 100]
+    11
+
+
+    >>> sort_arg = "insert_sort"
+
+    >>> values_tmp = copy.copy(values)
+    >>> _c = get_sort_instance(sort_arg)
+    >>> _c.sort(values_tmp, num ,lambda x, y: x > y)
+    insert_sort
+    [5, 10, 7, 8, 8, 20, 100, 1]
+    [5, 7, 10, 8, 8, 20, 100, 1]
+    [5, 7, 8, 10, 8, 20, 100, 1]
+    [5, 7, 8, 8, 10, 20, 100, 1]
+    [5, 7, 8, 8, 10, 20, 100, 1]
+    [5, 7, 8, 8, 10, 20, 100, 1]
+    [1, 5, 7, 8, 8, 10, 20, 100]
+
+
+    >>> sort_arg = "selection_sort"
+
+    >>> values_tmp = copy.copy(values)
+    >>> _c = get_sort_instance(sort_arg)
+    >>> _c.sort(values_tmp, num ,lambda x, y: x < y)
+    selection_sort
+    [1, 5, 7, 8, 8, 20, 100, 10]
+    [1, 5, 7, 8, 8, 10, 100, 20]
+    [1, 5, 7, 8, 8, 10, 20, 100]
+    3
+
+
+    >>> sort_arg = "double_bubble"
+
+    >>> values_tmp = copy.copy(values)
+    >>> _c = get_sort_instance(sort_arg)
+    >>> _c.sort(values_tmp, num ,lambda x, y: x < y)
+    bubble_sort by double_list
+    1 5 7 8 8 10 20 100
+    11
+
+
+    >>> sort_arg = "double_insert"
+
+    >>> values_tmp = copy.copy(values)
+    >>> _c = get_sort_instance(sort_arg)
+    >>> _c.sort(values_tmp, num ,lambda x, y: x > y)
+    insert_sort by double_list
+    10 5 7 8 8 20 100 1
+    5 10 7 8 8 20 100 1
+    5 7 10 8 8 20 100 1
+    5 7 8 10 8 20 100 1
+    5 7 8 8 10 20 100 1
+    5 7 8 8 10 20 100 1
+    5 7 8 8 10 20 100 1
+    1 5 7 8 8 10 20 100
+
+
+    >>> sort_arg = "double_selection"
+
+
+    >>> values_tmp = copy.copy(values)
+    >>> _c = get_sort_instance(sort_arg)
     >>> _c.sort(values_tmp, num ,lambda x, y: x < y)
     selection_sort by double_list
     [10, 5, 7, 8, 8, 20, 100, 1]

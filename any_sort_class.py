@@ -156,7 +156,8 @@ class Double_selection(AbstractSort):
                     exchange_flag = 1
                 j_tmp_node = j_tmp_node.next
 
-            #　素直にノードごと入れ替えた
+            # 交換部分で素直にノードごと入れ替えた
+            # 今までの最大値探索、削除、挿入では重複する要素が存在する場合対応できなかった
             exchange_node.value = tmp_node.value
             tmp_node.value = biggest_value
 

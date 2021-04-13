@@ -1,28 +1,45 @@
 # any_sort.pyで昇順降順に関するラムダ式を作ったためこちらで 偶昇順 , 奇昇順　の並び方をラムダで実現
-import any_sort
 
-
-def main():
+def sort(values, comp_func):
+    # comp_func = lambda a, b: a if a<b else b 昇順
+    # comp_func = lambda a, b: a if a>b else b 降順
     """
-    >>> main()
-    selection_sort
-    5
+    偶数昇順、奇数昇順
+    comp_func = lambda a, b: a if \
+                            a % 2 == 0 and b % 2 == 1 else \
+                            (b if b%2==0 and a%2==1 else (a if a<b else b))
+    """
+
+    """
+    以下doctest
+    >>> values = [111, 4, 9, 1, 8, 7, 5, 9]
+    >>> sort(values,comp_func = lambda a, b: a if a<b else b)
     [1, 4, 5, 7, 8, 9, 9, 111]
-    4 8 1 5 7 9 9 111 
+    >>> values = [111, 4, 9, 1, 8, 7, 5, 9]
+    >>> sort(values,comp_func = lambda a, b: a if a>b else b)
+    [111, 9, 9, 8, 7, 5, 4, 1]
+    >>> values = [111, 4, 9, 1, 8, 7, 5, 9]
+    >>> sort(values,comp_func = lambda a, b: a if \
+                            a % 2 == 0 and b % 2 == 1 else \
+                            (b if b%2==0 and a%2==1 else (a if a<b else b)))
+    [4, 8, 1, 5, 7, 9, 9, 111]
     """
-
-    sort_list = [111, 4, 9, 1, 8, 7, 5, 9]
-    num = len(sort_list)
-    any_sort.list_selection_sort(sort_list, num, lambda x, y: x < y)
-    print(sort_list)
-
-    map_even = map(lambda x: print(x, end=" ") if x %
-                   2 == 0 else "karioki", sort_list)
-    map_odd = map(lambda x: print(x, end=" ") if x %
-                  2 == 1 else "karioki", sort_list)
-
-    list(map_even)
-    list(map_odd)
+    num = len(values)
+    for i in range(0, num):
+        tmp_value = values[i]
+        tmp_index = i
+        for j in range(i, num):
+            if tmp_value != comp_func(values[j], tmp_value):
+                tmp_index = j
+            tmp_value = comp_func(values[j], tmp_value)
+        values[tmp_index] = values[i]
+        values[i] = tmp_value
+        """
+        values.remove(tmp_value)
+        values.insert(0, tmp_value)
+        new_list.insert(0, tmp_value)
+        """
+    print(values)
 
     return
 

@@ -1,4 +1,11 @@
 # deque使ったからすぐできたやつ
+# マージ確認
+#
+#
+#
+#
+#
+#
 
 from collections import deque
 

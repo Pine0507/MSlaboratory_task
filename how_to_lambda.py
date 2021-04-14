@@ -1,9 +1,13 @@
 # any_sort.pyで昇順降順に関するラムダ式を作ったためこちらで 偶昇順 , 奇昇順　の並び方をラムダで実現
 
 def sort(values, comp_func):
-    # comp_func = lambda a, b: a if a<b else b 昇順
-    # comp_func = lambda a, b: a if a>b else b 降順
     """
+    昇順
+    comp_func = lambda a, b: a if a<b else b
+
+    降順
+    comp_func = lambda a, b: a if a>b else b
+
     偶数昇順、奇数昇順
     comp_func = lambda a, b: a if \
                             a % 2 == 0 and b % 2 == 1 else \
@@ -15,9 +19,11 @@ def sort(values, comp_func):
     >>> values = [111, 4, 9, 1, 8, 7, 5, 9]
     >>> sort(values,comp_func = lambda a, b: a if a<b else b)
     [1, 4, 5, 7, 8, 9, 9, 111]
+
     >>> values = [111, 4, 9, 1, 8, 7, 5, 9]
     >>> sort(values,comp_func = lambda a, b: a if a>b else b)
     [111, 9, 9, 8, 7, 5, 4, 1]
+
     >>> values = [111, 4, 9, 1, 8, 7, 5, 9]
     >>> sort(values,comp_func = lambda a, b: a if \
                             a % 2 == 0 and b % 2 == 1 else \

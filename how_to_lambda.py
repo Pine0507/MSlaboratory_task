@@ -1,9 +1,19 @@
 def sort(values, comp_func):
-    # comp_func = lambda a, b: a if b<a else b
-    # comp_func = lambda a, b: a if b>a else b
-    # comp_func = lambda a,b
-    # sort(値のリスト, 昇順か降順か("reverse"で降順), 奇数か偶数か先に出す方("even"で偶数最初))
     """
+    昇順
+    comp_func = lambda a, b: a if a<b else b
+
+    降順
+    comp_func = lambda a, b: a if a>b else b
+
+    偶数昇順、奇数昇順
+    comp_func = lambda a, b: a if \
+                            a % 2 == 0 and b % 2 == 1 else \
+                            (b if b%2==0 and a%2==1 else (a if a<b else b))
+    """
+
+    """
+    以下doctest
     >>> values = [111, 4, 9, 1, 8, 7, 5, 9]
     >>> sort(values,comp_func = lambda a, b: a if a<b else b)
     [1, 4, 5, 7, 8, 9, 9, 111]

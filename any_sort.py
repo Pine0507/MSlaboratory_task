@@ -255,7 +255,7 @@ def double_list_selection_sort(values_list, length_list, comp_func):
     3
 
     """
-    print("sellection_sort by double_list")
+    print("selection_sort by double_list")
 
     sort_list = double_list.Double_List()
 

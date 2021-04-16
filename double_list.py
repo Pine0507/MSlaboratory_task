@@ -1,5 +1,3 @@
-
-
 # dequeの内容を自作したやつ
 
 class Node:

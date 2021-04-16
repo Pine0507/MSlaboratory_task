@@ -1,11 +1,11 @@
 import double_list
 import copy
-# comp_func = lambda x,y: if
 
 
 def list_insert_sort(values_list, num, comp_func):
     """
     >>> list = [5, 2, 4, 6, 1, 3]
+
     >>> list_tmp = copy.copy(list)
     >>> list_insert_sort(list_tmp, 6, lambda x, y: x > y)
     insert_sort
@@ -14,6 +14,7 @@ def list_insert_sort(values_list, num, comp_func):
     [2, 4, 5, 6, 1, 3]
     [1, 2, 4, 5, 6, 3]
     [1, 2, 3, 4, 5, 6]
+
     >>> list_tmp = copy.copy(list)
     >>> list_insert_sort(list_tmp, 6, lambda x, y: x < y)
     insert_sort
@@ -34,22 +35,13 @@ def list_insert_sort(values_list, num, comp_func):
         values_list[j+1] = tmp
         print(values_list)
 
-    """
-        #　昇順
-        if key == 1 and values_list[0] < values_list[num]:
-            new_list = []
-            for i in range(num):
-
-                new_list.append(lambda i: (i % 2 == 0, i))
-            print(new_list)
-    """
-
     return
 
 
 def list_bubble_sort(values_list, num, comp_func):
     """
     >>> list = [5, 2, 4, 6, 1, 3]
+
     >>> list_tmp = copy.copy(list)
     >>> list_bubble_sort(list_tmp, 6, lambda x, y: x < y)
     bubble_sort
@@ -63,6 +55,7 @@ def list_bubble_sort(values_list, num, comp_func):
     [1, 2, 3, 5, 4, 6]
     [1, 2, 3, 4, 5, 6]
     9
+
     >>> list_tmp = copy.copy(list)
     >>> list_bubble_sort(list_tmp, 6, lambda x, y: x > y)
     bubble_sort
@@ -96,14 +89,17 @@ def list_bubble_sort(values_list, num, comp_func):
 def list_selection_sort(values_list, num, comp_func):
     """
     >>> list = [5, 2, 4, 6, 1, 3]
+
     >>> list_tmp = copy.copy(list)
     >>> list_selection_sort(list_tmp, 6, lambda x, y: x < y)
     selection_sort
     3
+
     >>> list_tmp = copy.copy(list)
     >>> list_selection_sort(list_tmp, 6, lambda x, y: x > y)
     selection_sort
     4
+
     """
     print("selection_sort")
 
@@ -121,7 +117,6 @@ def list_selection_sort(values_list, num, comp_func):
         if exchange_flag:
             exchange_count += 1
         exchange_flag = 0
-    # print(values_list)
     print(exchange_count)
     return
 
@@ -129,8 +124,8 @@ def list_selection_sort(values_list, num, comp_func):
 def double_list_insert_sort(values_list, num, comp_func):
     """
     >>> list = [5, 2, 4, 6, 1, 3]
-    >>> tmp_list = copy.copy(list)
-    >>> double_list_insert_sort(list, 6,lambda x, y: x > y)
+    >>> list_tmp = copy.copy(list)
+    >>> double_list_insert_sort(list_tmp, 6,lambda x, y: x > y)
     insert_sort by double_list
     5 2 4 6 1 3
     2 5 4 6 1 3
@@ -138,13 +133,16 @@ def double_list_insert_sort(values_list, num, comp_func):
     2 4 5 6 1 3
     1 2 4 5 6 3
     1 2 3 4 5 6
+
     >>> list2 = [1, 2, 3]
     >>> double_list_insert_sort(list2, 3,lambda x, y: x > y)
     insert_sort by double_list
     1 2 3
     1 2 3
     1 2 3
-    >>> double_list_insert_sort(tmp_list, 6,lambda x, y: x < y)
+
+    >>> list_tmp = copy.copy(list)
+    >>> double_list_insert_sort(list_tmp, 6,lambda x, y: x < y)
     insert_sort by double_list
     5 2 4 6 1 3
     5 2 4 6 1 3
@@ -182,20 +180,23 @@ def double_list_insert_sort(values_list, num, comp_func):
 def double_list_bubble_sort(values_list, num, comp_func):
     """
     >>> list = [5, 2, 4, 6, 1, 3]
-    >>> tmp_list = copy.copy(list)
+    >>> list_tmp = copy.copy(list)
     >>> double_list_bubble_sort(list, 6,lambda x, y: x < y)
     bubble_sort by double_list
     1 2 3 4 5 6
     9
+
     >>> double_list_bubble_sort(list, 6,lambda x, y: x > y)
     bubble_sort by double_list
     6 5 4 3 2 1
     6
+
     >>> list = [5, 3, 2, 4, 1]
     >>> double_list_bubble_sort(list, 5,lambda x, y: x < y)
     bubble_sort by double_list
     1 2 3 4 5
     8
+
     """
 
     print("bubble_sort by double_list")
@@ -239,15 +240,18 @@ def double_list_selection_sort(values_list, num, comp_func):
     sellection_sort by double_list
     1 2 3 4 5 6
     3
+
     >>> double_list_selection_sort(list, 6,lambda x, y: x < y)
     sellection_sort by double_list
     6 5 4 3 2 1
     4
+
     >>> list = [5, 6, 4, 2, 1, 3]
     >>> double_list_selection_sort(list, 6,lambda x, y: x > y)
     sellection_sort by double_list
     1 2 3 4 5 6
     2
+
     """
     print("sellection_sort by double_list")
 
@@ -341,32 +345,28 @@ def print_tramp_list(data_list):
 def tramp_sort(data_list, num):
     """
     >>> list = ["H4", "C9", "S4", "D2", "C3"]
+
     >>> tramp_sort(list, 5)
     D2 C3 H4 S4 C9
     Stable
-    D2 C3 H4 S4 C9
-    Stable
+    D2 C3 S4 H4 C9
+    Not stable
     """
 
     for i in range(num):
         data_list[i] = [(data_list[i])[:1], (data_list[i])[1:]]
-
-    data_list_after = data_list
-    tramp_bubble(data_list_after, num)
-
-    print_tramp_list(data_list_after)
-
-    if judge_stable(data_list, data_list_after):
+    data_list_sort = copy.copy(data_list)
+    tramp_bubble(data_list_sort, num)
+    print_tramp_list(data_list_sort)
+    if judge_stable(data_list, data_list_sort):
         print("Stable")
     else:
         print("Not stable")
 
-    data_list_after = data_list
-    tramp_selection(data_list_after, num)
-
-    print_tramp_list(data_list_after)
-
-    if judge_stable(data_list, data_list_after):
+    data_list_sort = copy.copy(data_list)
+    tramp_selection(data_list_sort, num)
+    print_tramp_list(data_list_sort)
+    if judge_stable(data_list, data_list_sort):
         print("Stable")
     else:
         print("Not stable")
@@ -539,33 +539,24 @@ def double_list_tramp_sort(data_list, num):
 
     for i in range(num):
         data_list[i] = [(data_list[i])[:1], (data_list[i])[1:]]
-
-    tmp_list = data_list
-
-    sort_list.tramp_double_bubble(tmp_list, num)
-
+    list_tmp = data_list
+    sort_list.tramp_double_bubble(list_tmp, num)
     list_after = sort_list.change_double_to_list()
-
     for i in range(num):
         list_after[i] = [(list_after[i])[:1], (list_after[i])[1:]]
-
     if judge_stable(data_list, list_after):
         print("Stable")
     else:
         print("Not stable")
 
+    # 双方向リスト初期化
     for i in range(num):
         sort_list.deleteFirst()
-
-    tmp_list = data_list
-
-    sort_list.tramp_double_selection(tmp_list, num)
-
+    list_tmp = data_list
+    sort_list.tramp_double_selection(list_tmp, num)
     list_after = sort_list.change_double_to_list()
-
     for i in range(num):
         list_after[i] = [(list_after[i])[:1], (list_after[i])[1:]]
-
     if judge_stable(data_list, list_after):
         print("Stable")
     else:

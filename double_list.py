@@ -129,7 +129,6 @@ class Double_List:
             if tmp_node.next == self.head_node:
                 print(tmp_node.value)
                 return
-
             else:
                 print(tmp_node.value, end=" ")
                 tmp_node = tmp_node.next

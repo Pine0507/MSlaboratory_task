@@ -1,5 +1,3 @@
-# any_sort.pyで昇順降順に関するラムダ式を作ったためこちらで 偶昇順 , 奇昇順　の並び方をラムダで実現
-
 def sort(values, comp_func):
     # comp_func = lambda a, b: a if b<a else b
     # comp_func = lambda a, b: a if b>a else b

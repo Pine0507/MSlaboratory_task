@@ -54,11 +54,6 @@ class Double_List:
             self.head_node = new_node
             return
 
-        """
-        while not tmp_node == self.head_node:
-            tmp_node = tmp_node.tail
-        """
-
         new_node.next = self.head_node
         new_node.prev = self.head_node.prev
         self.head_node.prev.next = new_node
@@ -98,7 +93,6 @@ class Double_List:
         if self.head_node.next == self.head_node:
             self.head_node = None
             return
-
         self.head_node.prev.next = self.head_node.next
         self.head_node.next.prev = self.head_node.prev
         self.head_node = self.head_node.next

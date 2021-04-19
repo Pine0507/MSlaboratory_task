@@ -293,7 +293,8 @@ def double_list_selection_sort(values_list, length_list, comp_func):
 
 
 # 以下トランプ用
-def judge_stable(before_data, after_data):
+
+def is_stable(before_data, after_data):
     length = len(before_data)
 
     for i in range(length):
@@ -363,18 +364,18 @@ def tramp_sort(data_list, length_list):
     """
 
     separate_suit_num(data_list)
-    data_list_sort = copy.copy(data_list)
-    tramp_bubble(data_list_sort, length_list)
-    print_tramp_list(data_list_sort)
-    if judge_stable(data_list, data_list_sort):
+    list_after = copy.copy(data_list)
+    tramp_bubble(list_after, length_list)
+    print_tramp_list(list_after)
+    if is_stable(data_list, list_after):
         print("Stable")
     else:
         print("Not stable")
 
-    data_list_sort = copy.copy(data_list)
-    tramp_selection(data_list_sort, length_list)
-    print_tramp_list(data_list_sort)
-    if judge_stable(data_list, data_list_sort):
+    list_after = copy.copy(data_list)
+    tramp_selection(list_after, length_list)
+    print_tramp_list(list_after)
+    if is_stable(data_list, list_after):
         print("Stable")
     else:
         print("Not stable")
@@ -560,9 +561,8 @@ def double_list_tramp_sort(data_list, length_list):
     list_tmp = data_list
     sort_list.tramp_double_bubble(list_tmp, length_list)
     list_after = sort_list.change_double_to_list()
-    for i in range(length_list):
-        list_after[i] = [(list_after[i])[:1], (list_after[i])[1:]]
-    if judge_stable(data_list, list_after):
+    separate_suit_num(list_after)
+    if is_stable(data_list, list_after):
         print("Stable")
     else:
         print("Not stable")
@@ -573,9 +573,8 @@ def double_list_tramp_sort(data_list, length_list):
     list_tmp = data_list
     sort_list.tramp_double_selection(list_tmp, length_list)
     list_after = sort_list.change_double_to_list()
-    for i in range(length_list):
-        list_after[i] = [(list_after[i])[:1], (list_after[i])[1:]]
-    if judge_stable(data_list, list_after):
+    separate_suit_num(list_after)
+    if is_stable(data_list, list_after):
         print("Stable")
     else:
         print("Not stable")

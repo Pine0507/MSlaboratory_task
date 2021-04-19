@@ -141,12 +141,6 @@ def double_list_insert_sort(values_list, length_list, comp_func):
     1 2 4 5 6 3
     1 2 3 4 5 6
 
-    >>> list2 = [1, 2, 3]
-    >>> double_list_insert_sort(list2, 3,lambda x, y: x > y)
-    insert_sort by double_list
-    1 2 3
-    1 2 3
-    1 2 3
 
     >>> list_tmp = copy.copy(list)
     >>> double_list_insert_sort(list_tmp, 6,lambda x, y: x < y)
@@ -186,23 +180,26 @@ def double_list_insert_sort(values_list, length_list, comp_func):
 def double_list_bubble_sort(values_list, length_list, comp_func):
     """
     >>> list = [5, 2, 4, 6, 1, 3]
+
     >>> list_tmp = copy.copy(list)
-    >>> double_list_bubble_sort(list, 6,lambda x, y: x < y)
+    >>> double_list_bubble_sort(list_tmp, 6,lambda x, y: x < y)
     bubble_sort by double_list
     1 2 3 4 5 6
     9
 
-    >>> double_list_bubble_sort(list, 6,lambda x, y: x > y)
+    >>> list_tmp = copy.copy(list)
+    >>> double_list_bubble_sort(list_tmp, 6,lambda x, y: x > y)
     bubble_sort by double_list
     6 5 4 3 2 1
     6
 
     >>> list = [5, 3, 2, 4, 1]
-    >>> double_list_bubble_sort(list, 5,lambda x, y: x < y)
+
+    >>> list_tmp = copy.copy(list)
+    >>> double_list_bubble_sort(list_tmp, 5,lambda x, y: x < y)
     bubble_sort by double_list
     1 2 3 4 5
     8
-
     """
 
     print("bubble_sort by double_list")

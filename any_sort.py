@@ -121,6 +121,13 @@ def list_selection_sort(values_list, length_list, comp_func):
     return
 
 
+def change_list_to_double(before_list, double_list):
+    length_list = len(before_list)
+    for i in range(length_list-1, -1, -1):
+        double_list.insert(before_list[i])
+    return
+
+
 def double_list_insert_sort(values_list, length_list, comp_func):
     """
     >>> list = [5, 2, 4, 6, 1, 3]
@@ -155,8 +162,7 @@ def double_list_insert_sort(values_list, length_list, comp_func):
 
     sort_list = double_list.Double_List()
 
-    for i in range(length_list-1, -1, -1):
-        sort_list.insert(values_list[i])
+    change_list_to_double(values_list, sort_list)
 
     sort_list.all_node_show()
 
@@ -203,8 +209,7 @@ def double_list_bubble_sort(values_list, length_list, comp_func):
 
     sort_list = double_list.Double_List()
 
-    for i in range(length_list-1, -1, -1):
-        sort_list.insert(values_list[i])
+    change_list_to_double(values_list, sort_list)
 
     tmp_node = sort_list.head_node.prev
 
@@ -238,19 +243,19 @@ def double_list_selection_sort(values_list, length_list, comp_func):
     >>> list = [5, 2, 4, 6, 1, 3]
     >>> list_tmp = copy.copy(list)
     >>> double_list_selection_sort(list_tmp, 6,lambda x, y: x > y)
-    sellection_sort by double_list
+    selection_sort by double_list
     1 2 3 4 5 6
     3
 
     >>> list_tmp = copy.copy(list)
     >>> double_list_selection_sort(list_tmp, 6,lambda x, y: x < y)
-    sellection_sort by double_list
+    selection_sort by double_list
     6 5 4 3 2 1
     4
 
     >>> list_tmp = copy.copy(list)
     >>> double_list_selection_sort(list_tmp, 6,lambda x, y: x > y)
-    sellection_sort by double_list
+    selection_sort by double_list
     1 2 3 4 5 6
     3
 
@@ -259,8 +264,7 @@ def double_list_selection_sort(values_list, length_list, comp_func):
 
     sort_list = double_list.Double_List()
 
-    for i in range(length_list-1, -1, -1):
-        sort_list.insert(values_list[i])
+    change_list_to_double(values_list, sort_list)
 
     tmp_node = sort_list.head_node
     j_tmp_node = tmp_node
@@ -342,6 +346,14 @@ def print_tramp_list(data_list):
     return
 
 
+def separate_suit_num(to_separate_list):
+    length_list = len(to_separate_list)
+    for i in range(length_list):
+        to_separate_list[i] = [(to_separate_list[i])[:1],
+                               (to_separate_list[i])[1:]]
+    return
+
+
 def tramp_sort(data_list, length_list):
     """
     >>> list = ["H4", "C9", "S4", "D2", "C3"]
@@ -353,8 +365,7 @@ def tramp_sort(data_list, length_list):
     Not stable
     """
 
-    for i in range(length_list):
-        data_list[i] = [(data_list[i])[:1], (data_list[i])[1:]]
+    separate_suit_num(data_list)
     data_list_sort = copy.copy(data_list)
     tramp_bubble(data_list_sort, length_list)
     print_tramp_list(data_list_sort)
@@ -449,6 +460,12 @@ class tramp_double(double_list.Double_List):
                 tmp_node = tmp_node.next
         return
 
+    def change_list_to_double(self, before_list):
+        length_list = len(before_list)
+        for i in range(length_list-1, -1, -1):
+            self.insert(before_list[i][1], before_list[i][0])
+        return
+
     def change_double_to_list(self):
         tmp_node = self.head_node
         return_list = []
@@ -464,8 +481,7 @@ class tramp_double(double_list.Double_List):
         return return_list
 
     def tramp_double_bubble(self, data_list, length_list):
-        for i in range(length_list-1, -1, -1):
-            self.insert(data_list[i][1], data_list[i][0])
+        self.change_list_to_double(data_list)
 
         tmp_node = self.head_node.prev
         tmp_node = tmp_node.prev
@@ -494,8 +510,7 @@ class tramp_double(double_list.Double_List):
 
     def tramp_double_selection(self, data_list, length_list):
 
-        for i in range(length_list-1, -1, -1):
-            self.insert(data_list[i][1], data_list[i][0])
+        self.change_list_to_double(data_list)
 
         tmp_node = self.head_node
         j_tmp_node = tmp_node
@@ -524,6 +539,13 @@ class tramp_double(double_list.Double_List):
 
         return
 
+    def separate_suit_num(self, to_separate_list):
+        length_list = len(to_separate_list)
+        for i in range(length_list):
+            to_separate_list[i] = [(to_separate_list[i])[:1],
+                                   (to_separate_list[i])[1:]]
+        return
+
 
 def double_list_tramp_sort(data_list, length_list):
     """
@@ -537,8 +559,7 @@ def double_list_tramp_sort(data_list, length_list):
 
     sort_list = tramp_double()
 
-    for i in range(length_list):
-        data_list[i] = [(data_list[i])[:1], (data_list[i])[1:]]
+    separate_suit_num(data_list)
     list_tmp = data_list
     sort_list.tramp_double_bubble(list_tmp, length_list)
     list_after = sort_list.change_double_to_list()
@@ -550,8 +571,8 @@ def double_list_tramp_sort(data_list, length_list):
         print("Not stable")
 
     # 双方向リスト初期化
-    for i in range(length_list):
-        sort_list.deleteFirst()
+    sort_list = tramp_double()
+
     list_tmp = data_list
     sort_list.tramp_double_selection(list_tmp, length_list)
     list_after = sort_list.change_double_to_list()
